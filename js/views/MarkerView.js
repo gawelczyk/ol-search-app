@@ -1,15 +1,21 @@
 MapSearchApp.Views.MarkerView = Backbone.View.extend({
 
     initialize: function (params) {
-
+        var that = this;
+        //events on model
         this.model.on("change:selected", function (ob1) {
-            if (this.model.isSelected()) {
-                this.$el.addClass("highlighted");
-            } else {
-                this.$el.removeClass("highlighted");
-            }
-        });
+            this.render();
+        }, this);
+    },
 
+    //use for events on this.$el
+    events: {
+        "click": "onClick"
+    },
+
+    onClick: function () {
+        //console.log(this);
+        this.model.toggleSelected();
     },
 
     template: MapSearchApp.Services.templates.get("#marker-template"),
@@ -21,7 +27,7 @@ MapSearchApp.Views.MarkerView = Backbone.View.extend({
         var html = this.template(m1);
         this.$el.html(html);
         if (this.model.isSelected()) {
-            this.$el.addClass("highlighted");
+            this.$el.find('.marker').addClass("highlighted");
         }
 
         return this;
