@@ -4,8 +4,8 @@ MapSearchApp.Views.MarkerView = Backbone.View.extend({
         var that = this;
         //events on model
         this.model.on("change:selected", function (ob1) {
-            this.render();
-        }, this);
+            that.render();
+        });
     },
 
     //use for events on this.$el
