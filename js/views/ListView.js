@@ -27,7 +27,7 @@ MapSearchApp.Views.ListView = Backbone.View.extend({
         "click .js-lat": "onSortLat"
     },
     onSortSelected: function () {
-        console.log('onSortSelected');
+        this.onSort('selected');
     },
     onSortStreet: function () {
         this.onSort('street');
@@ -42,8 +42,9 @@ MapSearchApp.Views.ListView = Backbone.View.extend({
         this.onSort('lat');
     },
     onSort: function (column) {
-        if(this.collection.comparator == column){
+        if (this.collection.comparator == column) {
             this.collection.sort();
+            console.log('onSort', 'desc');
         }
         else {
             this.collection.comparator = column;
