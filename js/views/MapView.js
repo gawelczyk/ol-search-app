@@ -37,8 +37,11 @@ MapSearchApp.Views.MapView = Backbone.View.extend({
 
         this.map.render(this.$el.find("#map")[0]);
 
+        var strategy = new OpenLayers.Strategy.Cluster();
+
         var mapLayer = new OpenLayers.Layer.Vector("estates", {
             //projection: "EPSG:4326",
+            strategies: [strategy],
             eventListeners: {
                 'featureselected': function (evt) {
                     log("selected", arguments);
@@ -54,6 +57,7 @@ MapSearchApp.Views.MapView = Backbone.View.extend({
 
         var that = this;
         var ff = [];
+        this.map.addLayer(mapLayer);
         this.collection.each(function (el1) {
             //var markerView = new MapSearchApp.Views.MarkerView({
             //    model: el1
@@ -64,8 +68,7 @@ MapSearchApp.Views.MapView = Backbone.View.extend({
             g = g.transform('EPSG:4326', that.map.getProjection())
             ff.push(new OpenLayers.Feature.Vector(g, { street: el1.attributes.street, id: el1.attributes.id }));
         });
-        mapLayer.addFeatures(ff)
-        this.map.addLayer(mapLayer);
+        mapLayer.addFeatures(ff);
         return this;
     },
 
