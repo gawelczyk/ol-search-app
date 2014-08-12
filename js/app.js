@@ -7,8 +7,7 @@ MapSearchApp.init = function() {
 	$(".js-app").html(pageView.$el);
 };
 
-Map.init = function() {
-};
+MapSearchApp.Krakow = { lat: 50.060, lon: 19.959 };
 
 $(function() {
 	MapSearchApp.init();

@@ -22,6 +22,7 @@ MapSearchApp.Views.PageView = Backbone.View.extend({
         var listView = new MapSearchApp.Views.ListView({
             collection: this.collection
         });
+
         listView.render();
         this.$el.find('.list-container').html(listView.$el);
 
