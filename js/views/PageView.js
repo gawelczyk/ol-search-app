@@ -18,11 +18,11 @@ MapSearchApp.Views.PageView = Backbone.View.extend({
         });
         mapView.render();
         this.$el.find('.map-container').html(mapView.$el);
+        //MapSearchApp.mapView = mapView;
 
         var listView = new MapSearchApp.Views.ListView({
             collection: this.collection
         });
-
         listView.render();
         this.$el.find('.list-container').html(listView.$el);
 
